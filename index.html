@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h3>
+      1'den 99'a kadar olan sayilari for dongusu ile yanyana
+      <button id="btnSirala" onclick="sirala()">sirala</button>
+    </h3>
+    <div id="sayilar"></div>
+    <button id="btnRastgele" disabled onclick="rastgeleSayiSec() ">
+      Rastgele Sayi Sec
+    </button>
+
+    <script>
+      let secilenSayilar = [];
+
+      function sirala() {
+        const ucucaSayilar = [];
+
+        for (let i = 1; i < 100; i++) {
+          sayilar.innerHTML += `
+            <span>${i}</span>
+          `;
+          if (i % 10 === 0) {
+            sayilar.innerHTML += "</br>";
+          }
+        }
+        document.getElementById("btnRastgele").disabled = false;
+        document.getElementById("btnSirala").disabled = true;
+      }
+
+      function rastgeleSayiSec() {
+        if (secilenSayilar.length === 99) {
+          alert("Tüm sayılar seçildi!");
+          return;
+        }
+
+        let randomNum ;
+        do {
+          randomNum = Math.floor(Math.random() * 99) + 1;
+        } while (secilenSayilar.includes(randomNum));
+
+        secilenSayilar.push(randomNum);
+
+        const spans = document.querySelectorAll("#sayilar span");
+        spans.forEach((span) => {
+          if (parseInt(span.textContent) === randomNum) {
+            span.style.color = "red";
+            span.style.fontWeight = "bold";
+          }
+        });
+      }
+      if (secilenSayilar.length === 99) {
+        document.getElementById("btnRastgele").disabled = true;
+      }
+    </script>
+  </body>
+</html>
